@@ -1,0 +1,28 @@
+Criar um cluster e nodegroup
+eksctl create cluster -f cluster.yaml
+eksctl create nodegroup --config-file=node.yaml
+eksctl create nodegroup --config-file=node-t4g-custom.yaml --skip-outdated-addons-check=true
+
+Lists
+
+eksctl get cluster --region us-east-
+eksctl get nodegroup --cluster=basic-cluster  --region us-east-2
+
+
+
+Escalar o cluster
+
+eksctl scale nodegroup --cluster=basic-cluster \
+--nodes=2  node1  \
+--nodes-min=2  \
+--nodes-max=2 \
+--region us-east-2
+
+
+Excluir 
+
+# cluster
+eksctl delete cluster -f cluster.yaml
+# node
+eksctl delete nodegroup --cluster=basic-cluster --name=node-t4g --region us-east-2
+
