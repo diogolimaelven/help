@@ -1,0 +1,38 @@
+version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
+    environment:
+      - discovery.type=single-node
+
+
+    ports:
+      - 9200:9200
+    volumes:
+      - esdata8:/usr/share/elasticsearch/data
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.6.1
+    # volumes:
+    #   - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      
+volumes:
+  esdata8:
+
+# reset pass elastic
+# docker exec -it docker-elasticsearch-1 /usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
+
+# iGwfs+TdiIQ7+Y4Z1JlZ
+
+#token kibana
+# docker exec -it docker-elasticsearch-1 /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+
+
+
+
+#openssl x509 -fingerprint -sha256 -in config/certs/http_ca.crt
+# SHA256 Fingerprint=78:B4:AA:00:61:C7:2B:6B:DF:21:C4:C8:5D:EC:1A:76:5C:5E:84:0B:84:D9:0C:2E:73:E9:DD:07:7A:F6:6E:AC
+
